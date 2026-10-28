@@ -1,0 +1,109 @@
+@import '@fontsource/dm-sans/400.css';
+@import '@fontsource/dm-sans/500.css';
+@import '@fontsource/dm-sans/600.css';
+@import '@fontsource/manrope/400.css';
+@import '@fontsource/manrope/500.css';
+@import '@fontsource/manrope/600.css';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ivory: #f7f5f0;
+    --sage: #a6bdb5;
+    --petrol: #334c4b;
+    --deep: #22302f;
+    --header-h: 84px;
+    color-scheme: light;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  body {
+    @apply bg-ivory font-body text-deep antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--sage);
+    color: var(--deep);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-[-0.035em];
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--petrol);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
+  }
+  .serif-accent {
+    @apply font-serif font-normal italic tracking-[-0.01em];
+  }
+  .glass {
+    @apply border border-white/60 bg-white/75 shadow-float backdrop-blur-xl;
+  }
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/85 px-4 py-2.5 font-body text-[13px] font-semibold text-petrol shadow-float backdrop-blur-md;
+  }
+  .split-line {
+    padding-bottom: 0.06em;
+    margin-bottom: -0.06em;
+  }
+  .field {
+    @apply w-full rounded-2xl border border-ivory/15 bg-ivory/[0.06] px-4 py-3.5 font-body text-[15px] text-ivory placeholder:text-ivory/40 transition-colors focus:border-sage focus:bg-ivory/10 focus:outline-none;
+  }
+  .field-label {
+    @apply mb-2 block font-body text-[13px] font-semibold text-ivory/80;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes scroll-cue {
+  0% { transform: translateY(-100%); }
+  60% { transform: translateY(100%); }
+  100% { transform: translateY(100%); }
+}
+.animate-scroll-cue { animation: scroll-cue 2s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+
+@keyframes float-soft {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+.animate-float { animation: float-soft 6s ease-in-out infinite; }
